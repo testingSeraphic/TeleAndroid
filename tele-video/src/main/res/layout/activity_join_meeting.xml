@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:keepScreenOn="true">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:text="Join Meeting"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+        <EditText
+            android:id="@+id/editMeetingId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:hint="Meeting ID"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:maxLength="35"
+            android:textAlignment="center" />
+
+        <EditText
+            android:id="@+id/editName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:hint="Enter Name"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:textAlignment="center" />
+
+
+        <Button
+            android:id="@+id/buttonContinue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Join Meeting"
+            android:contentDescription="abc"
+            android:gravity="center"
+            android:layout_gravity="center"/>
+
+        <ProgressBar
+            android:id="@+id/progressAuthentication"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="209dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="8dp"
+            android:indeterminate="true"
+            android:visibility="gone" />
+
+
+    </LinearLayout>
+
+</layout>
+

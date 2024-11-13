@@ -1,0 +1,943 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/tile_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black">
+
+        <com.amazonaws.services.chime.sdk.meetings.audiovideo.video.DefaultVideoRenderView
+            android:id="@+id/bigVideoSurface"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <View
+            android:id="@+id/cursor"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:visibility="gone"
+            android:background="@drawable/ic_cursor" />
+
+
+
+        <ImageButton
+            android:id="@+id/ibShowSmallView"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_margin="20dp"
+            android:background="@drawable/ic_videocam"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clWorking"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="5dp"
+            android:elevation="10dp"
+
+            app:cardPreventCornerOverlap="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <com.tele.android.utils.RoundedFrameLayout
+                android:id="@+id/flSmallVideo"
+                android:layout_width="144dp"
+                android:layout_height="198dp"
+                android:clipChildren="true"
+                android:background="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.amazonaws.services.chime.sdk.meetings.audiovideo.video.DefaultVideoRenderView
+                    android:id="@+id/video_small"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clipToOutline="true"
+                    android:gravity="center" />
+
+
+                <View
+                    android:id="@+id/cursorSmall"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:visibility="gone"
+                    android:background="@drawable/ic_cursor" />
+
+
+
+            </com.tele.android.utils.RoundedFrameLayout>
+            <View
+                android:id="@+id/view"
+                android:layout_width="145dp"
+                android:layout_height="200dp"
+                android:clipChildren="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:background="@drawable/bg_border_less_round"/>
+
+
+            <ImageView
+                android:id="@+id/ivVideoExpand"
+                android:layout_width="31dp"
+                android:layout_height="31dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="7dp"
+                android:layout_marginBottom="15dp"
+                android:elevation="15dp"
+                android:src="@drawable/ic_video_expand"
+                app:layout_constraintEnd_toEndOf="@id/flSmallVideo"
+                app:layout_constraintTop_toTopOf="@id/flSmallVideo" />
+
+            <ImageView
+                android:id="@+id/ivVideoCompress"
+                android:layout_width="31dp"
+                android:layout_height="31dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginEnd="7dp"
+                android:layout_marginBottom="15dp"
+                android:elevation="15dp"
+                android:src="@drawable/ic_close_video_view"
+                app:layout_constraintEnd_toEndOf="@id/flSmallVideo"
+                app:layout_constraintTop_toBottomOf="@id/ivVideoExpand" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+        <eightbitlab.com.blurview.BlurView
+            android:id="@+id/blurViewTimer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            app:blurOverlayColor="#D2000000"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tvTimer"
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_transparent_with_border"
+                android:drawableStart="@drawable/ic_calling_time"
+                android:drawablePadding="3dp"
+                android:fontFamily="@font/overusedgrotesk_semibold"
+                android:gravity="center"
+                android:paddingHorizontal="9dp"
+                android:paddingVertical="5dp"
+                android:text="00:00"
+                android:textColor="@color/white"
+                android:textSize="13sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </eightbitlab.com.blurview.BlurView>
+        <ImageView
+            android:id="@+id/ivCross"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:visibility="gone"
+            android:src="@drawable/ic_bottom_options"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/tvProviderName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="@font/overusedgrotesk_semibold"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/clBottomViewPortrait"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/clBottomViewPortrait"
+            android:layout_marginHorizontal="-10dp"
+            android:layout_marginBottom="-15dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+            <ImageView
+                android:id="@+id/ivDisconnect"
+                android:layout_width="62dp"
+                android:layout_height="62dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="27dp"
+                app:layout_constraintTop_toTopOf="parent"
+                android:src="@drawable/ic_call_disconnect"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageView
+                android:id="@+id/ivBottomOptions"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="20dp"
+                android:src="@drawable/ic_bottom_options"
+                app:layout_constraintBottom_toBottomOf="@id/ivDisconnect"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/ivDisconnect" />
+
+
+            <ImageButton
+                android:id="@+id/ibOpenBottomOptions"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="-10dp"
+                android:background="@drawable/ic_open_bottom_options"
+                android:elevation="10dp"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/blurViewBottom"
+                />
+
+            <eightbitlab.com.blurview.BlurView
+                android:id="@+id/blurViewBottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="-5dp"
+                android:layout_marginEnd="-5dp"
+                android:layout_marginBottom="-1dp"
+                android:visibility="gone"
+                app:blurOverlayColor="#90000000"
+                android:layout_marginTop="12dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_more_round_transparent_border">
+
+
+                    <ImageButton
+                        android:id="@+id/ibSwitchCamera"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/ic_switch_screen"
+                        app:layout_constraintBottom_toBottomOf="@id/ivDisconnectBottom"
+                        app:layout_constraintEnd_toStartOf="@id/ibMic"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/ivDisconnectBottom" />
+
+                    <ImageButton
+                        android:id="@+id/ibMic"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/ic_selected_mic"
+                        android:scaleType="centerCrop"
+                        app:layout_constraintBottom_toBottomOf="@id/ivDisconnectBottom"
+                        app:layout_constraintEnd_toStartOf="@id/ivDisconnectBottom"
+                        app:layout_constraintStart_toEndOf="@id/ibSwitchCamera"
+                        app:layout_constraintTop_toTopOf="@id/ivDisconnectBottom"
+
+                        />
+
+                    <ImageView
+                        android:id="@+id/ivDisconnectBottom"
+                        android:layout_width="62dp"
+                        android:layout_height="62dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="27dp"
+                        android:src="@drawable/ic_call_disconnect"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/ibChat"
+                        app:layout_constraintStart_toEndOf="@id/ibMic"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageButton
+                        android:id="@+id/ibChat"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/ic_chat"
+                        app:layout_constraintBottom_toBottomOf="@id/ivDisconnectBottom"
+                        app:layout_constraintEnd_toStartOf="@id/ibTools"
+                        app:layout_constraintStart_toEndOf="@id/ivDisconnectBottom"
+                        app:layout_constraintTop_toTopOf="@id/ivDisconnectBottom" />
+
+                    <ImageButton
+                        android:id="@+id/ibTools"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/ic_tools"
+                        android:scaleType="centerCrop"
+                        app:layout_constraintBottom_toBottomOf="@id/ivDisconnectBottom"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/ibChat"
+                        app:layout_constraintTop_toTopOf="@id/ivDisconnectBottom" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </eightbitlab.com.blurview.BlurView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/clBottomViewLandscape"
+            android:visibility="gone"
+            android:layout_marginEnd="-15dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+            <ImageView
+                android:id="@+id/ivDisconnectLandScape"
+                android:layout_width="62dp"
+                android:layout_height="62dp"
+                android:layout_marginEnd="27dp"
+                android:src="@drawable/ic_call_disconnect"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/ivBottomOptionsLandScape"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginBottom="20dp"
+                android:src="@drawable/ic_bottom_options"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/ivDisconnectLandScape"
+                app:layout_constraintStart_toStartOf="@id/ivDisconnectLandScape" />
+
+
+            <ImageButton
+                android:id="@+id/ibOpenBottomOptionsLandScape"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="-10dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/ic_open_bottom_options"
+                android:elevation="10dp"
+                android:visibility="visible"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="@id/blurViewBottomLandScape"
+                />
+
+            <eightbitlab.com.blurview.BlurView
+                android:id="@+id/blurViewBottomLandScape"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="-5dp"
+                android:layout_marginBottom="-5dp"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginEnd="-1dp"
+                android:visibility="visible"
+                android:layout_marginStart="12dp"
+                app:blurOverlayColor="#33000000"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+               >
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_more_round_transparent_border"
+                   >
+
+
+
+                    <ImageButton
+                        android:id="@+id/ibSwitchCameraLandScape"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginEnd="27dp"
+                        android:layout_marginStart="15dp"
+                        android:background="@drawable/ic_switch_screen"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toTopOf="@id/ibMicLandScape"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <ImageButton
+                        android:id="@+id/ibMicLandScape"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:scaleType="centerCrop"
+                        android:layout_marginEnd="27dp"
+                        android:layout_marginStart="15dp"
+                        app:layout_constraintBottom_toTopOf="@id/ivDisconnectBottomLandScape"
+                        android:background="@drawable/ic_selected_mic"
+                        app:layout_constraintTop_toBottomOf="@id/ibSwitchCameraLandScape"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        />
+
+                    <ImageView
+                        android:id="@+id/ivDisconnectBottomLandScape"
+                        android:layout_width="62dp"
+                        android:layout_height="62dp"
+                        android:layout_marginEnd="27dp"
+                        android:layout_marginStart="15dp"
+                        app:layout_constraintTop_toBottomOf="@id/ibMicLandScape"
+                        android:src="@drawable/ic_call_disconnect"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintBottom_toTopOf="@id/ibChatLandScape"/>
+
+                    <ImageButton
+                        android:id="@+id/ibChatLandScape"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginEnd="27dp"
+                        android:layout_marginStart="15dp"
+                        android:background="@drawable/ic_chat"
+                        app:layout_constraintTop_toBottomOf="@id/ivDisconnectBottomLandScape"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintBottom_toTopOf="@id/ibToolsLandScape"/>
+
+                    <ImageButton
+                        android:id="@+id/ibToolsLandScape"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:scaleType="centerCrop"
+                        android:layout_marginEnd="27dp"
+                        android:layout_marginStart="15dp"
+                        app:layout_constraintTop_toBottomOf="@id/ibChatLandScape"
+                        android:background="@drawable/ic_tools"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </eightbitlab.com.blurview.BlurView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <eightbitlab.com.blurview.BlurView
+            android:id="@+id/blurViewSideBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="90dp"
+            android:visibility="gone"
+            app:blurOverlayColor="#33000000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_transparent_with_border">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clPointer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+
+                    <ImageButton
+                        android:id="@+id/ibPointer"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:scaleType="centerCrop"
+                        android:layout_marginHorizontal="17dp"
+                        android:background="@drawable/ic_pointer"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        />
+
+                    <TextView
+                        android:id="@+id/tvPointerText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:fontFamily="@font/overusedgrotesk_medium"
+                        android:text="Pointer"
+                        android:textColor="@color/white"
+                        android:textSize="13sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/ibPointer" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clHighlighter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/clPointer">
+
+                    <ImageButton
+                        android:id="@+id/ibHighlighter"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_marginHorizontal="17dp"
+                        android:background="@drawable/ic_highlighter"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvHighlighterText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:fontFamily="@font/overusedgrotesk_medium"
+                        android:text="Highlighter"
+                        android:textColor="@color/white"
+                        android:textSize="13sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/ibHighlighter" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clPen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/clHighlighter">
+
+                    <ImageView
+                        android:id="@+id/ivPen"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_marginHorizontal="17dp"
+                        android:src="@drawable/ic_pen"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvPenText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:fontFamily="@font/overusedgrotesk_medium"
+                        android:text="Pen"
+
+                        android:textColor="@color/white"
+                        android:textSize="13sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/ivPen" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/clPen">
+
+                    <ImageButton
+                        android:id="@+id/ibLabel"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_marginHorizontal="17dp"
+                        android:layout_marginBottom="33dp"
+                        android:background="@drawable/ic_label"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvLabelText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:fontFamily="@font/overusedgrotesk_medium"
+                        android:text="Label"
+                        android:textColor="@color/white"
+                        android:textSize="13sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/ibLabel" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clScreenshot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/clLabel">
+
+                    <ImageButton
+                        android:id="@+id/ibScreenshot"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_marginHorizontal="17dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/ic_screenshot"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvScreenshot"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginBottom="15dp"
+                        android:fontFamily="@font/overusedgrotesk_medium"
+                        android:text="Screenshot"
+                        android:textColor="@color/white"
+                        android:textSize="13sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/ibScreenshot" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </eightbitlab.com.blurview.BlurView>
+        <eightbitlab.com.blurview.BlurView
+            android:id="@+id/blurViewSideBarLandscape"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="93dp"
+            android:visibility="gone"
+            app:blurOverlayColor="#33000000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_transparent_with_border">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clPointerLandscape"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toStartOf="@id/clHighlighterLandscape"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent">
+
+
+                    <ImageButton
+                        android:id="@+id/ibPointerLandscape"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:scaleType="centerCrop"
+                        android:layout_marginHorizontal="17dp"
+                        android:background="@drawable/ic_pointer"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        />
+
+                    <TextView
+                        android:id="@+id/tvPointerTextLandscape"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:fontFamily="@font/overusedgrotesk_medium"
+                        android:text="Pointer"
+                        android:textColor="@color/white"
+                        android:textSize="13sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/ibPointerLandscape" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clHighlighterLandscape"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toStartOf="@id/clPenLandscape"
+                    app:layout_constraintStart_toEndOf="@id/clPointerLandscape"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent">
+
+                    <ImageButton
+                        android:id="@+id/ibHighlighterLandscape"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_marginHorizontal="17dp"
+                        android:background="@drawable/ic_highlighter"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvHighlighterTextLandscape"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:fontFamily="@font/overusedgrotesk_medium"
+                        android:text="Highlighter"
+                        android:textColor="@color/white"
+                        android:textSize="13sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/ibHighlighterLandscape" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clPenLandscape"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toStartOf="@id/clLabelLandscape"
+                    app:layout_constraintStart_toEndOf="@id/clHighlighterLandscape"
+                   app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent">
+
+                    <ImageView
+                        android:id="@+id/ivPenLandscape"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_marginHorizontal="17dp"
+                        android:src="@drawable/ic_pen"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvPenTextLandscape"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:fontFamily="@font/overusedgrotesk_medium"
+                        android:text="Pen"
+                        android:textColor="@color/white"
+                        android:textSize="13sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/ivPenLandscape" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clLabelLandscape"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/clPenLandscape"
+                    app:layout_constraintEnd_toStartOf="@id/clScreenshotLandscape"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageButton
+                        android:id="@+id/ibLabelLandscape"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_marginHorizontal="17dp"
+                        android:layout_marginBottom="33dp"
+                        android:background="@drawable/ic_label"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvLabelTextLandscape"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:fontFamily="@font/overusedgrotesk_medium"
+                        android:text="Label"
+                        android:textColor="@color/white"
+                        android:textSize="13sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/ibLabelLandscape" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clScreenshotLandscape"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/clLabelLandscape"
+                    app:layout_constraintTop_toTopOf="parent"
+                    >
+
+                    <ImageButton
+                        android:id="@+id/ibScreenshotLandscape"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_marginHorizontal="17dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/ic_screenshot"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvScreenshotLandscape"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:fontFamily="@font/overusedgrotesk_medium"
+                        android:text="Screenshot"
+                        android:textColor="@color/white"
+                        android:textSize="13sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@id/ibScreenshotLandscape"
+                        app:layout_constraintStart_toStartOf="@id/ibScreenshotLandscape"
+                        app:layout_constraintTop_toBottomOf="@id/ibScreenshotLandscape" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </eightbitlab.com.blurview.BlurView>
+
+        <eightbitlab.com.blurview.BlurView
+            android:id="@+id/blurViewExtend"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="-10dp"
+            app:blurOverlayColor="#33000000"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_transparent_with_border">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="25dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="30dp"
+                    app:cardCornerRadius="20dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingBottom="20dp">
+
+                        <TextView
+                            android:id="@+id/tvHeading"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:fontFamily="@font/overusedgrotesk_semibold"
+                            android:gravity="center"
+                            android:text="Client Requested Extension"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tvText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@font/overusedgrotesk_semibold"
+                            android:gravity="center"
+                            android:text="Approve adding more time?"
+                            android:textColor="#545559"
+                            android:textSize="15sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tvHeading"
+                            />
+
+
+                        <ImageView
+                            android:id="@+id/ivClock"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_marginTop="15dp"
+                            android:src="@drawable/ic_clock"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tvText"
+                            />
+
+                        <Button
+                            android:id="@+id/btnNo"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_marginTop="15dp"
+                            android:background="@drawable/btn_no"
+                            android:fontFamily="@font/overusedgrotesk_bold"
+                            android:gravity="center"
+                            android:text="No"
+                            android:layout_marginStart="30dp"
+                            android:layout_marginEnd="7dp"
+                            android:textColor="@color/white"
+                            android:textSize="17sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintHorizontal_weight="1"
+                            app:layout_constraintEnd_toStartOf="@id/btnYes"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/ivClock" />
+
+                        <TextView
+                            android:id="@+id/btnYes"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_marginTop="15dp"
+                            app:layout_constraintHorizontal_weight="1"
+                            android:background="@drawable/btn_yes"
+                            android:fontFamily="@font/overusedgrotesk_bold"
+                            android:gravity="center"
+                            android:text="Yes"
+                            android:layout_marginStart="7dp"
+                            android:layout_marginEnd="30dp"
+                            android:textColor="@color/white"
+                            android:textSize="17sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/btnNo"
+                            app:layout_constraintTop_toBottomOf="@id/ivClock" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </eightbitlab.com.blurview.BlurView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>
+

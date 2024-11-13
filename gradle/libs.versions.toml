@@ -1,0 +1,43 @@
+[versions]
+agp = "8.5.2"
+kotlin = "2.0.0"
+coreKtx = "1.13.1"
+junit = "4.13.2"
+junitVersion = "1.2.1"
+espressoCore = "3.6.1"
+appcompat = "1.7.0"
+material = "1.12.0"
+activity = "1.9.2"
+constraintlayout = "2.1.4"
+chime = "0.23.0"
+blurview = "version-2.0.5"
+gson = "2.9.0"
+hbrecord = "3.0.1"
+ffmpeg = "4.4"
+renderscript = "4.0.1"
+androidLibrary = "8.7.2"
+mavenLibrary = "1.0.0"
+
+[libraries]
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
+androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+amazon-chime-sdk = { group = "software.aws.chimesdk", name = "amazon-chime-sdk", version.ref = "chime"}
+amazon-chime-sdk-media = { group = "software.aws.chimesdk", name = "amazon-chime-sdk-media", version.ref = "chime" }
+blur = { group = "com.github.Dimezis", name = "BlurView", version.ref = "blurview" }
+gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
+hb-recorder = { group = "com.github.HBiSoft", name = "HBRecorder", version.ref = "hbrecord" }
+ffmpeg = { group = "com.arthenica", name = "mobile-ffmpeg-full", version.ref = "ffmpeg" }
+renderscript = { group = "jp.wasabeef", name = "blurry", version.ref = "renderscript" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+mavenPublish = { id = "maven-publish"}
+android-library = { id = "com.android.library"}
+
