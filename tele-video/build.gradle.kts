@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
-    alias(libs.plugins.mavenPublish)
+    id("maven-publish")
 }
 
 android {
@@ -63,3 +63,18 @@ dependencies {
 }
 
 
+publishing {
+    publications {
+        create("bar", MavenPublication::class) {
+            groupId = "tele"
+            artifactId = "com.tele.android"
+            version = "1.0.1"
+            artifact("$buildDir/outputs/aar/com-tele-android-release.aar")
+        }
+    }
+}
+
+tasks.named("publishBarPublicationToMavenLocal") {
+    dependsOn(tasks.named("bundleReleaseAar"))
+    mustRunAfter(tasks.named("bundleReleaseAar"))
+}
