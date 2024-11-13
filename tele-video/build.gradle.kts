@@ -68,9 +68,12 @@ publishing {
         create("bar", MavenPublication::class) {
             groupId = "tele"
             artifactId = "com.tele.android"
-            version = "1.0.1"
+            version = "1.0.2"
             artifact("$buildDir/outputs/aar/com-tele-android-release.aar")
         }
+    }
+    repositories {
+        mavenLocal()
     }
 }
 
