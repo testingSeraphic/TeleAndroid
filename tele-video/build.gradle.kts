@@ -73,7 +73,7 @@ publishing {
         create("bar", MavenPublication::class) {
             groupId = "tele"
             artifactId = "com.tele.android"
-            version = "1.0.0"
+            version = "1.0.3"
             artifact("$buildDir/outputs/aar/tele-video-release.aar")
         }
     }
