@@ -41,6 +41,11 @@ android {
             pickFirsts.add("lib/x86_64/libc++_shared.so")
         }
     }
+
+    lint {
+        baseline = file("lint-baseline.xml")
+    }
+
 }
 
 dependencies {
@@ -68,8 +73,8 @@ publishing {
         create("bar", MavenPublication::class) {
             groupId = "tele"
             artifactId = "com.tele.android"
-            version = "1.0.2"
-            artifact("$buildDir/outputs/aar/com-tele-android-release.aar")
+            version = "1.0.3"
+            artifact("$buildDir/outputs/aar/tele-video-release.aar")
         }
     }
     repositories {
