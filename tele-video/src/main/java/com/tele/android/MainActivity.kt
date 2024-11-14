@@ -129,7 +129,7 @@ import java.util.Date
 import java.util.Locale
 
 
-class MainActivity : AppCompatActivity(),
+public class MainActivity : AppCompatActivity(),
     RealtimeObserver, AudioVideoObserver, VideoTileObserver,
     MetricsObserver, ActiveSpeakerObserver, DeviceChangeObserver, DataMessageObserver,
     ContentShareObserver, EventAnalyticsObserver, TranscriptEventObserver,

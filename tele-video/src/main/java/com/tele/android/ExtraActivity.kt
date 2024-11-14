@@ -133,7 +133,7 @@ import java.util.Date
 import java.util.Locale
 
 
-class ExtraActivity : AppCompatActivity(),
+public class ExtraActivity : AppCompatActivity(),
     RealtimeObserver, AudioVideoObserver, VideoTileObserver,
     MetricsObserver, ActiveSpeakerObserver, DeviceChangeObserver, DataMessageObserver,
     ContentShareObserver, EventAnalyticsObserver, TranscriptEventObserver,

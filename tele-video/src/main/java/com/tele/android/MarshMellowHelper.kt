@@ -9,7 +9,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import java.util.ArrayList
 
-class MarshMellowHelper {
+public class MarshMellowHelper {
 
     private val TAG = "PermissionHelper"
     private val permissionHelper: MarshMellowHelper? = null
