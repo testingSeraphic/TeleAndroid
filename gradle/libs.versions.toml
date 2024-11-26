@@ -1,6 +1,6 @@
 [versions]
 agp = "8.5.2"
-kotlin = "2.0.0"
+kotlin = "1.9.0"
 coreKtx = "1.13.1"
 junit = "4.13.2"
 junitVersion = "1.2.1"
@@ -12,11 +12,14 @@ constraintlayout = "2.1.4"
 chime = "0.23.0"
 blurview = "version-2.0.5"
 gson = "2.9.0"
-hbrecord = "3.0.1"
+hbrecord = "3.0.7"
 ffmpeg = "4.4"
 renderscript = "4.0.1"
-androidLibrary = "8.7.2"
-mavenLibrary = "1.0.0"
+publish = "0.18.0"
+comet = "4.0.10"
+cometUi = "4.3.15"
+retrofit2 = "2.9.0"
+retrofit2Converter = "2.5.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -34,10 +37,14 @@ gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
 hb-recorder = { group = "com.github.HBiSoft", name = "HBRecorder", version.ref = "hbrecord" }
 ffmpeg = { group = "com.arthenica", name = "mobile-ffmpeg-full", version.ref = "ffmpeg" }
 renderscript = { group = "jp.wasabeef", name = "blurry", version.ref = "renderscript" }
+comet-chat = { group = "com.cometchat", name = "chat-sdk-android", version.ref = "comet" }
+comet-chat_ui = { group = "com.cometchat", name = "chat-uikit-android", version.ref = "cometUi" }
+retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit2" }
+retrofit-converter = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit2Converter" }
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-mavenPublish = { id = "maven-publish"}
-android-library = { id = "com.android.library"}
+mavenPublish = { id = "maven-publish", version.ref = "publish"}
 

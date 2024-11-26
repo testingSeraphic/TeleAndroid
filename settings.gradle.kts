@@ -13,6 +13,7 @@ pluginManagement {
             mavenCentral()
         maven("https://jitpack.io")
 
+
         gradlePluginPortal()
     }
 }
@@ -22,8 +23,10 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         maven("https://jitpack.io")
+        maven (
+            "https://dl.cloudsmith.io/public/cometchat/cometchat/maven/")
     }
 }
 
 rootProject.name = "TeleAndroid"
-include(":tele-video")
+include(":app")

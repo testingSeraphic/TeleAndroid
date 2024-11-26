@@ -2,8 +2,43 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.TeleAndroid" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
+        <item name="android:windowFullscreen">true</item>
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
+    <style name="TransparentDialog" parent="Theme.Material3.Light.Dialog">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item> <!-- Removes the title bar -->
+        <item name="android:windowBackground">@android:color/transparent</item> <!-- Transparent background -->
+        <item name="android:windowIsTranslucent">true</item> <!-- Makes the background translucent -->
+        <!-- Apply window enter animation (slide from bottom) -->
+        <item name="android:windowEnterAnimation">@anim/dialog_slide_up_in</item>
 
+        <!-- Apply window exit animation (slide down) -->
+        <item name="android:windowExitAnimation">@anim/dialog_slide_down_out</item>
+
+    </style>
+    <style name="CustomCardViewSenderStyle" parent="@style/Widget.MaterialComponents.CardView">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlaySender_card_custom_corners</item>
+    </style>
+
+
+    <style name="ShapeAppearanceOverlaySender_card_custom_corners" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">4dp</item>
+        <item name="cornerSizeTopLeft">4dp</item>
+        <item name="cornerSizeBottomRight">4dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+    </style>
+
+    <style name="CustomCardViewReceiverStyle" parent="@style/Widget.MaterialComponents.CardView">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlayReceiver_card_custom_corners</item>
+    </style>
+    <style name="ShapeAppearanceOverlayReceiver_card_custom_corners" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">4dp</item>
+        <item name="cornerSizeTopLeft">4dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+        <item name="cornerSizeBottomLeft">4dp</item>
+    </style>
     <style name="Theme.TeleAndroid" parent="Base.Theme.TeleAndroid" />
 </resources>

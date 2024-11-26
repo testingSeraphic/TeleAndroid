@@ -58,7 +58,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
 
-            <com.tele.android.utils.RoundedFrameLayout
+            <com.telemechanic.consu.utils.RoundedFrameLayout
                 android:id="@+id/flSmallVideo"
                 android:layout_width="145dp"
                 android:layout_height="200dp"
@@ -100,7 +100,7 @@
                         android:background="@drawable/ic_cursor" />
 
                 </FrameLayout>
-            </com.tele.android.utils.RoundedFrameLayout>
+            </com.telemechanic.consu.utils.RoundedFrameLayout>
 
 
             <ImageView

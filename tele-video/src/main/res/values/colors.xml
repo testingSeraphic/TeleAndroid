@@ -4,4 +4,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="transparent">#00000000</color>
     <color name="semiTransparentBlack">#99000000</color>
+    <color name="chat_text_color">#545559</color>
+    <color name="chat_time_color">#9FA0A6</color>
+    <color name="chat_attachment_color">#9FA0A6</color>
 </resources>
