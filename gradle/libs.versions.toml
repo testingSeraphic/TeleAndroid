@@ -1,6 +1,6 @@
 [versions]
 agp = "8.5.2"
-kotlin = "1.9.0"
+kotlin = "2.0.0"
 coreKtx = "1.13.1"
 junit = "4.13.2"
 junitVersion = "1.2.1"
@@ -20,6 +20,7 @@ comet = "4.0.10"
 cometUi = "4.3.15"
 retrofit2 = "2.9.0"
 retrofit2Converter = "2.5.0"
+androidLibrary = "8.7.2"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -47,4 +48,5 @@ retrofit-converter = { group = "com.squareup.retrofit2", name = "converter-gson"
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 mavenPublish = { id = "maven-publish", version.ref = "publish"}
+android-library = { id = "com.android.library", version.ref = "androidLibrary"}
 

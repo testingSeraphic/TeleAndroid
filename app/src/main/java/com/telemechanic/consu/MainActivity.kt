@@ -89,16 +89,30 @@ import com.amazonaws.services.chime.sdk.meetings.session.MeetingFeatures
 import com.amazonaws.services.chime.sdk.meetings.session.MeetingSessionConfiguration
 import com.amazonaws.services.chime.sdk.meetings.session.MeetingSessionCredentials
 import com.amazonaws.services.chime.sdk.meetings.session.MeetingSessionStatus
-import com.amazonaws.services.chime.sdk.meetings.session.MeetingSessionStatusCode.*
+import com.amazonaws.services.chime.sdk.meetings.session.MeetingSessionStatusCode.AudioAuthenticationRejected
+import com.amazonaws.services.chime.sdk.meetings.session.MeetingSessionStatusCode.AudioCallAtCapacity
+import com.amazonaws.services.chime.sdk.meetings.session.MeetingSessionStatusCode.AudioCallEnded
+import com.amazonaws.services.chime.sdk.meetings.session.MeetingSessionStatusCode.AudioDisconnectAudio
+import com.amazonaws.services.chime.sdk.meetings.session.MeetingSessionStatusCode.AudioDisconnected
+import com.amazonaws.services.chime.sdk.meetings.session.MeetingSessionStatusCode.AudioInputDeviceNotResponding
+import com.amazonaws.services.chime.sdk.meetings.session.MeetingSessionStatusCode.AudioInternalServerError
+import com.amazonaws.services.chime.sdk.meetings.session.MeetingSessionStatusCode.AudioJoinedFromAnotherDevice
+import com.amazonaws.services.chime.sdk.meetings.session.MeetingSessionStatusCode.AudioOutputDeviceNotResponding
+import com.amazonaws.services.chime.sdk.meetings.session.MeetingSessionStatusCode.AudioServiceUnavailable
+import com.amazonaws.services.chime.sdk.meetings.session.MeetingSessionStatusCode.ConnectionHealthReconnect
+import com.amazonaws.services.chime.sdk.meetings.session.MeetingSessionStatusCode.Left
+import com.amazonaws.services.chime.sdk.meetings.session.MeetingSessionStatusCode.NetworkBecamePoor
+import com.amazonaws.services.chime.sdk.meetings.session.MeetingSessionStatusCode.OK
+import com.amazonaws.services.chime.sdk.meetings.session.MeetingSessionStatusCode.VideoAtCapacityViewOnly
+import com.amazonaws.services.chime.sdk.meetings.session.MeetingSessionStatusCode.VideoServiceFailed
 import com.amazonaws.services.chime.sdk.meetings.utils.logger.ConsoleLogger
 import com.amazonaws.services.chime.sdk.meetings.utils.logger.LogLevel
 import com.google.gson.Gson
 import com.hbisoft.hbrecorder.HBRecorder
 import com.hbisoft.hbrecorder.HBRecorderListener
-import com.telemechanic.consu.R
-import com.telemechanic.consu.databinding.ActivityMainBinding
 import com.telemechanic.consu.data.RosterAttendee
 import com.telemechanic.consu.data.VideoCollectionTile
+import com.telemechanic.consu.databinding.ActivityMainBinding
 import com.telemechanic.consu.datamodel.JoinMeetingResponse
 import com.telemechanic.consu.device.AudioDeviceManager
 import com.telemechanic.consu.service.MicrophoneService
@@ -198,10 +212,10 @@ class MainActivity : AppCompatActivity(),
         meetingId = intent.extras?.getString(JoinMeeting.MEETING_ID_KEY) as String
         name = intent.extras?.getString(JoinMeeting.NAME_KEY) as String
         Log.d("getName",name.toString())
-if(name!="user"){
-    remoteIsSmall=false
-    localIsSmall=true
-}
+        if(name!="user"){
+            remoteIsSmall=false
+            localIsSmall=true
+        }
         val meetingResponseJson =
             intent.extras?.getString(JoinMeeting.MEETING_RESPONSE_KEY) as String
         val sessionConfig =
@@ -428,7 +442,7 @@ if(name!="user"){
                 ibPointer.setImageResource(R.drawable.ic_selected_pointer)
 
                 cursor.visibility=View.VISIBLE
-             flMovingSurface.visibility=View.VISIBLE
+                flMovingSurface.visibility=View.VISIBLE
                 if(movingX==0F && movingY==0F) {
                     val centerX = resources.displayMetrics.widthPixels / 2
                     val centerY = resources.displayMetrics.heightPixels / 2
@@ -512,60 +526,60 @@ if(name!="user"){
         val relativeOppositeY = relativeY / oppositeHeight
 
 
-            if(remoteIsSmall && name!="user"){
-                val screenWidth = binding.videoSmall.width
-                val screenHeight = binding.videoSmall.height
-               movingSmallX= relativeOppositeX * screenWidth
-               movingSmallY = relativeOppositeY * screenHeight
-                binding.cursorSmall.visibility=View.VISIBLE
-                binding.flMovingSurfaceSmall.visibility=View.VISIBLE
-isSmallCursorEnabled=true
-                binding.ibPointer.setImageResource(R.drawable.ic_selected_pointer)
-                //audioVideo.realtimeSendDataMessage("pointerAdded", "true", 5000)
-                binding.cursorSmall.x = movingSmallX - (binding.cursorSmall.width + 2) / 2
-                binding.cursorSmall.y = movingSmallY - (binding.cursorSmall.height + 2) / 2
-            }
-            else if(!remoteIsSmall && name!="user") {
-                val screenWidth = resources.displayMetrics.widthPixels
-                val screenHeight = resources.displayMetrics.heightPixels
-                movingX = relativeOppositeX * screenWidth
-                movingY= relativeOppositeY * screenHeight
-                binding.cursor.visibility=View.VISIBLE
-                binding.flMovingSurface.visibility=View.VISIBLE
-                isCursorEnabled=true
-                binding.ibPointer.setImageResource(R.drawable.ic_selected_pointer)
-              //  audioVideo.realtimeSendDataMessage("pointerAdded", "true", 5000)
-                binding.cursor.x = movingX - (binding.cursor.width + 2) / 2
-                binding.cursor.y = movingY - (binding.cursor.height + 2) / 2
-            }
-            else if(remoteIsSmall && name=="user") {
-                val screenWidth = resources.displayMetrics.widthPixels
-                val screenHeight = resources.displayMetrics.heightPixels
-                movingX = relativeOppositeX * screenWidth
-               movingY= relativeOppositeY * screenHeight
-                binding.cursor.visibility=View.VISIBLE
-                binding.flMovingSurface.visibility=View.VISIBLE
-                isCursorEnabled=true
-                binding.cursor.x = movingX - (binding.cursor.width + 2) / 2
-                binding.cursor.y = movingY - (binding.cursor.height + 2) / 2
-                binding.ibPointer.setImageResource(R.drawable.ic_selected_pointer)
-                //audioVideo.realtimeSendDataMessage("pointerAdded", "true", 5000)
-
-            }
-            else if(!remoteIsSmall && name=="user") {
-                val screenWidth = binding.videoSmall.width
-                val screenHeight = binding.videoSmall.height
-                movingSmallX = relativeOppositeX * screenWidth
-                movingSmallY= relativeOppositeY * screenHeight
-                binding.cursorSmall.visibility=View.VISIBLE
-                binding.flMovingSurfaceSmall.visibility=View.VISIBLE
-                isSmallCursorEnabled=true
-                binding.ibPointer.setImageResource(R.drawable.ic_selected_pointer)
-                //audioVideo.realtimeSendDataMessage("pointerAdded", "true", 5000)
-                binding.cursorSmall.x = movingSmallX - (binding.cursorSmall.width + 2) / 2
-                binding.cursorSmall.y = movingSmallY - (binding.cursorSmall.height + 2) / 2
-            }
+        if(remoteIsSmall && name!="user"){
+            val screenWidth = binding.videoSmall.width
+            val screenHeight = binding.videoSmall.height
+            movingSmallX= relativeOppositeX * screenWidth
+            movingSmallY = relativeOppositeY * screenHeight
+            binding.cursorSmall.visibility=View.VISIBLE
+            binding.flMovingSurfaceSmall.visibility=View.VISIBLE
+            isSmallCursorEnabled=true
+            binding.ibPointer.setImageResource(R.drawable.ic_selected_pointer)
+            //audioVideo.realtimeSendDataMessage("pointerAdded", "true", 5000)
+            binding.cursorSmall.x = movingSmallX - (binding.cursorSmall.width + 2) / 2
+            binding.cursorSmall.y = movingSmallY - (binding.cursorSmall.height + 2) / 2
         }
+        else if(!remoteIsSmall && name!="user") {
+            val screenWidth = resources.displayMetrics.widthPixels
+            val screenHeight = resources.displayMetrics.heightPixels
+            movingX = relativeOppositeX * screenWidth
+            movingY= relativeOppositeY * screenHeight
+            binding.cursor.visibility=View.VISIBLE
+            binding.flMovingSurface.visibility=View.VISIBLE
+            isCursorEnabled=true
+            binding.ibPointer.setImageResource(R.drawable.ic_selected_pointer)
+            //  audioVideo.realtimeSendDataMessage("pointerAdded", "true", 5000)
+            binding.cursor.x = movingX - (binding.cursor.width + 2) / 2
+            binding.cursor.y = movingY - (binding.cursor.height + 2) / 2
+        }
+        else if(remoteIsSmall && name=="user") {
+            val screenWidth = resources.displayMetrics.widthPixels
+            val screenHeight = resources.displayMetrics.heightPixels
+            movingX = relativeOppositeX * screenWidth
+            movingY= relativeOppositeY * screenHeight
+            binding.cursor.visibility=View.VISIBLE
+            binding.flMovingSurface.visibility=View.VISIBLE
+            isCursorEnabled=true
+            binding.cursor.x = movingX - (binding.cursor.width + 2) / 2
+            binding.cursor.y = movingY - (binding.cursor.height + 2) / 2
+            binding.ibPointer.setImageResource(R.drawable.ic_selected_pointer)
+            //audioVideo.realtimeSendDataMessage("pointerAdded", "true", 5000)
+
+        }
+        else if(!remoteIsSmall && name=="user") {
+            val screenWidth = binding.videoSmall.width
+            val screenHeight = binding.videoSmall.height
+            movingSmallX = relativeOppositeX * screenWidth
+            movingSmallY= relativeOppositeY * screenHeight
+            binding.cursorSmall.visibility=View.VISIBLE
+            binding.flMovingSurfaceSmall.visibility=View.VISIBLE
+            isSmallCursorEnabled=true
+            binding.ibPointer.setImageResource(R.drawable.ic_selected_pointer)
+            //audioVideo.realtimeSendDataMessage("pointerAdded", "true", 5000)
+            binding.cursorSmall.x = movingSmallX - (binding.cursorSmall.width + 2) / 2
+            binding.cursorSmall.y = movingSmallY - (binding.cursorSmall.height + 2) / 2
+        }
+    }
 
     fun removePointer(){
         movingX=0f
@@ -1786,7 +1800,7 @@ isSmallCursorEnabled=true
     ) {
         uiScope.launch {
             let {
-              //  Toast.makeText(this@MainActivity, toastMessage, Toast.LENGTH_SHORT).show()
+                //  Toast.makeText(this@MainActivity, toastMessage, Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -1870,7 +1884,7 @@ isSmallCursorEnabled=true
                 }
             }
             if(meetingModel.videoStatesInCurrentPage.size==2){
-               // Toast.makeText(this@MainActivity,"2 users there",Toast.LENGTH_SHORT).show()
+                // Toast.makeText(this@MainActivity,"2 users there",Toast.LENGTH_SHORT).show()
 
                 if(!isTimerStarted){
                     isTimerStarted=true

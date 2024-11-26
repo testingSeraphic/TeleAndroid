@@ -1,5 +1,5 @@
 plugins {
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
     id("maven-publish")
 }
@@ -10,8 +10,6 @@ android {
 
     defaultConfig {
         minSdk = 24
-        versionCode = 1
-        versionName = "1.0.6"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         manifestPlaceholders["file_provider"] = "com.telemechanic.consu"
     }
@@ -69,6 +67,10 @@ android {
         }
     }
 
+    lint {
+        baseline = file("lint-baseline.xml")
+    }
+
 }
 
 
@@ -101,8 +103,8 @@ publishing {
         create("bar", MavenPublication::class) {
             groupId = "tele"
             artifactId = "com.telemechanic.consu"
-            version = "1.0.6"
-            artifact("$buildDir/outputs/aar/com-tele-android-release.aar")
+            version = "1.0.7"
+            artifact("$buildDir/outputs/aar/app-release.aar")
         }
     }
 }
