@@ -15,7 +15,7 @@ android {
         //noinspection OldTargetApi
         targetSdk = 34
         versionCode = 1
-        versionName = "1.0.4"
+        versionName = "1.0.5"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         manifestPlaceholders["file_provider"] = "com.telemechanic.consu"
     }
@@ -31,8 +31,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
         jvmTarget = "1.8"
@@ -92,7 +92,7 @@ publishing {
         create("bar", MavenPublication::class) {
             groupId = "tele"
             artifactId = "com.telemechanic.consu"
-            version = "1.0.4"
+            version = "1.0.5"
             artifact("$buildDir/outputs/aar/com-tele-android-release.aar")
         }
     }

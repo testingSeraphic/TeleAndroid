@@ -28,4 +28,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "TeleAndroid"
-include(":app")
+include(":tele-video")
