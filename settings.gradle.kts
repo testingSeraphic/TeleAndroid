@@ -23,8 +23,7 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         maven("https://jitpack.io")
-        maven (
-            "https://dl.cloudsmith.io/public/cometchat/cometchat/maven/")
+        maven ("https://dl.cloudsmith.io/public/cometchat/cometchat/maven/")
     }
 }
 

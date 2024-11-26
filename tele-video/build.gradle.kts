@@ -11,8 +11,6 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.telemechanic.consu"
-        applicationId = "com.telemechanic.consu"
         minSdk = 24
         //noinspection OldTargetApi
         targetSdk = 34
