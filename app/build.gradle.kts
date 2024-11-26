@@ -103,7 +103,7 @@ publishing {
         create("bar", MavenPublication::class) {
             groupId = "tele"
             artifactId = "com.telemechanic.consu"
-            version = "1.0.4"
+            version = "1.0.8"
             artifact("$buildDir/outputs/aar/app-release.aar")
         }
     }
