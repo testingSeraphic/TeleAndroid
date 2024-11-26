@@ -1,5 +1,3 @@
-import com.android.build.api.dsl.Packaging
-
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
@@ -12,14 +10,11 @@ android {
 
     defaultConfig {
         minSdk = 24
-        //noinspection OldTargetApi
-        targetSdk = 34
         versionCode = 1
-        versionName = "1.0.5"
+        versionName = "1.0.6"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         manifestPlaceholders["file_provider"] = "com.telemechanic.consu"
     }
-
 
     buildTypes {
         release {
@@ -35,10 +30,22 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
     buildFeatures {
         dataBinding = true
+    }
+    packaging {
+        jniLibs {
+            pickFirsts.add("lib/arm64-v8a/libc++_shared.so")
+            pickFirsts.add("lib/armeabi-v7a/libc++_shared.so")
+            pickFirsts.add("lib/x86/libc++_shared.so")
+            pickFirsts.add("lib/x86_64/libc++_shared.so")
+        }
+    }
+
+    lint {
+        baseline = file("lint-baseline.xml")
     }
 
     packaging {
@@ -61,7 +68,9 @@ android {
             pickFirsts.add("lib/x86_64/librsjni_androidx.so")
         }
     }
+
 }
+
 
 dependencies {
 
@@ -92,7 +101,7 @@ publishing {
         create("bar", MavenPublication::class) {
             groupId = "tele"
             artifactId = "com.telemechanic.consu"
-            version = "1.0.5"
+            version = "1.0.6"
             artifact("$buildDir/outputs/aar/com-tele-android-release.aar")
         }
     }
